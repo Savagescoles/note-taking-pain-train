@@ -35,7 +35,7 @@ You will need to install express, path and node to run this application. That is
 ## Usage
 
 
-use to take some notes
+![GIF](/pictures/NoteTaker.gif)
 
 ## License
 
