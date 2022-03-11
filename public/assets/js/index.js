@@ -63,7 +63,7 @@ var renderActiveNote = function() {
 /*============================================================================
 // Get data, save it to the db and update 
 ==============================================================================*/
-var handleNoteSave = function() {
+var updatingNoteSave = function() {
   var newNote = {
     title: $noteTaking.val(),
     text: $noteData.val()
@@ -75,9 +75,9 @@ var handleNoteSave = function() {
   });
 };
 
-var handleEdit = function (event) {
+var editNoteTime = function (event) {
   event.stopPropagation();
-  handleNoteView();
+  hereTheNoteView();
   console.log("got here")
   var note = $(this)
     .parent(".list-group-item")
@@ -100,7 +100,7 @@ var handleEdit = function (event) {
 /*============================================================================
 // Delete Notes
 ==============================================================================*/
-var handleNoteDelete = function(event) {
+var hereNoteDeletion = function(event) {
   event.stopPropagation();
 
   var note = $(this)
@@ -117,18 +117,18 @@ var handleNoteDelete = function(event) {
   });
 };
 
-var handleNoteView = function() {
+var hereTheNoteView = function() {
   console.log("isplaying it")
   TheNoteRightNow = $(this).data();
   renderActiveNote();
 };
 
-var handleNewNoteView = function() {
+var hereNewNoteView = function() {
   TheNoteRightNow = {};
   renderActiveNote();
 };
 
-var handleRenderSaveBtn = function() {
+var keyupSaveNote = function() {
   if (!$noteTaking.val().trim() || !$noteData.val().trim()) {
     $saveTheNote.hide();
   } else {
@@ -166,13 +166,13 @@ var getAlltheNotes = function() {
   });
 };
 
-$saveTheNote.on("click", handleNoteSave);
-$noteListing.on("click", ".edit-note", handleEdit);
-$noteListing.on("click", ".list-group-item", handleNoteView);
-$newButton.on("click", handleNewNoteView);
-$noteListing.on("click", ".delete-note", handleNoteDelete);
-$noteTaking.on("keyup", handleRenderSaveBtn);
-$noteData.on("keyup", handleRenderSaveBtn);
+$saveTheNote.on("click", updatingNoteSave);
+$noteListing.on("click", ".edit-note", editNoteTime);
+$noteListing.on("click", ".list-group-item", hereTheNoteView);
+$newButton.on("click", hereNewNoteView);
+$noteListing.on("click", ".delete-note", hereNoteDeletion);
+$noteTaking.on("keyup", keyupSaveNote);
+$noteData.on("keyup", keyupSaveNote);
 
 
 getAlltheNotes();
